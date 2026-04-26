@@ -10,17 +10,31 @@ If you export your project to GitHub, you can use a "Workflow" to build the APK 
 3.  **Paste this code** (⚠️ **STOP!** DO NOT copy the triple backticks ` ``` ` or the word `yaml`. ONLY copy starting from the word `name:`):
 
 ```yaml
-name: Build Flutter APK
-on: [push]
+name: Build Android APK
+on:
+  push:
+    branches: [ main, master ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: subosito/flutter-action@v2
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Install Java
+        uses: actions/setup-java@v4
         with:
+          distribution: 'temurin'
+          java-version: '17'
+          
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
           channel: 'stable'
-      - name: Build APK
+          
+      - name: Build Apps
         run: |
           # Build Child App
           cd flutter_child_app
@@ -33,6 +47,7 @@ jobs:
           flutter pub get
           flutter build apk --release
           cd ..
+          
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:

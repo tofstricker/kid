@@ -12,7 +12,7 @@ Follow these steps to build your Android APK using GitHub Actions (totally free 
 1.  Go to your new repository on [github.com](https://github.com).
 2.  Click the **"Add file"** button and choose **"Create new file"**.
 3.  In the filename box, type exactly: `.github/workflows/build_apk.yml`
-4.  **COPY AND PASTE THE CODE BELOW** (⚠️ **STOP!** DO NOT copy the triple backticks ` ``` ` or the word `yaml`. ONLY copy starting from the word `name:`).
+4.  **COPY AND PASTE THE CODE BELOW** (⚠️ **STOP!** DO NOT copy the triple backticks ` ``` ` or the word `yaml`. ONLY copy starting from the word `name:` and ending before the last backticks).
 
 ```yaml
 name: Build Android APK
@@ -32,13 +32,13 @@ jobs:
       - name: Install Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'zulu'
+          distribution: 'temurin'
           java-version: '17'
           
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.x'
+          flutter-version: '3.24.0'
           channel: 'stable'
           
       - name: Build Apps
