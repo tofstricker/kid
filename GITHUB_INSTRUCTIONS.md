@@ -12,8 +12,9 @@ Follow these steps to build your Android APK using GitHub Actions (totally free 
 1.  Go to your new repository on [github.com](https://github.com).
 2.  Click the **"Add file"** button and choose **"Create new file"**.
 3.  In the filename box, type exactly: `.github/workflows/build_apk.yml`
-4.  **COPY AND PASTE THE CODE BELOW** (Strictly follow these rules: Do NOT include any backticks ` ``` `, and ensure `name:` is the very first line):
+4.  **COPY AND PASTE THE CODE BELOW** (⚠️ **STOP!** DO NOT copy the triple backticks ` ``` ` or the word `yaml`. ONLY copy starting from the word `name:`).
 
+```yaml
 name: Build Android APK
 on:
   push:
@@ -61,7 +62,12 @@ jobs:
           path: |
             flutter_child_app/build/app/outputs/flutter-apk/app-release.apk
             flutter_parent_app/build/app/outputs/flutter-apk/app-release.apk
+```
 
+**CRITICAL CHECK**: Your editor on GitHub should look like this (no leading dots, no backticks):
+1. `name: Build Android APK`
+2. `on:`
+...
 ### Step 3: Commit and Run
 1.  Scroll down to the bottom of the page.
 2.  Click the green **"Commit changes..."** button.
@@ -73,7 +79,7 @@ jobs:
 2.  You will see a workflow run in progress (usually called "Build Android APK"). Click on it.
 3.  Wait about 5-8 minutes for the green checkmark ✅ to appear.
 4.  Once finished, scroll down to the **"Artifacts"** section at the bottom.
-5.  Click on `child-app-release` or `parent-app-release` to download the ZIP file containing your APK!
+5.  Click on **`apks`** to download the ZIP file containing both your APKs!
 
 ---
 *Tip: You only need to set this up once. Every time you push new code from AI Studio, GitHub will build a new APK for you automatically!*

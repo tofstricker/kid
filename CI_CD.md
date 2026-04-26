@@ -7,9 +7,9 @@ If you export your project to GitHub, you can use a "Workflow" to build the APK 
 
 1.  **Export to GitHub**: Use the AI Studio settings to export your project.
 2.  **Create Workflow**: In your GitHub repo, create a file at `.github/workflows/build_apk.yml`.
-3.  **Paste this code** (Wait! DO NOT include any backticks ` ``` ` and make sure there is NO leading space):
+3.  **Paste this code** (⚠️ **STOP!** DO NOT copy the triple backticks ` ``` ` or the word `yaml`. ONLY copy starting from the word `name:`):
 
---- COPY EVERYTHING BELOW THIS LINE ---
+```yaml
 name: Build Flutter APK
 on: [push]
 jobs:
@@ -22,15 +22,25 @@ jobs:
           channel: 'stable'
       - name: Build APK
         run: |
+          # Build Child App
           cd flutter_child_app
-          flutter test # Optional but good
+          flutter pub get
           flutter build apk --release
-      - name: Upload APK
+          cd ..
+          
+          # Build Parent App
+          cd flutter_parent_app
+          flutter pub get
+          flutter build apk --release
+          cd ..
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: app-release
-          path: flutter_child_app/build/app/outputs/flutter-apk/app-release.apk
---- END OF CODE ---
+          name: apks
+          path: |
+            flutter_child_app/build/app/outputs/flutter-apk/app-release.apk
+            flutter_parent_app/build/app/outputs/flutter-apk/app-release.apk
+```
 
 4.  **Get the file**: After you push the code, go to the "Actions" tab in GitHub. Once the build finishes, you can download the APK from the "Artifacts" section.
 

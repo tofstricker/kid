@@ -16,7 +16,6 @@ dependencies:
   android_intent_plus: ^4.3.0
   http: ^1.1.0
   fl_chart: ^0.63.0
-  motion: ^0.1.0
   image_picker: ^1.0.4
 
 dev_dependencies:
