@@ -9,8 +9,30 @@ rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
+
+// Define map for flutter fallback properties
+def flutterProperties = [
+    compileSdkVersion: 34,
+    minSdkVersion: 21,
+    targetSdkVersion: 34
+]
+
+rootProject.ext.flutter = flutterProperties
+
 subprojects {
     project.evaluationDependsOn(':app')
+    project.ext.flutter = flutterProperties
+
+    plugins.withId('com.android.library') {
+        project.android.ext.flutter = flutterProperties
+    }
+}
+
+ext {
+    compileSdkVersion = 34
+    minSdkVersion = 21
+    targetSdkVersion = 34
+    kotlin_version = '1.9.0'
 }
 
 task clean(type: Delete) {
