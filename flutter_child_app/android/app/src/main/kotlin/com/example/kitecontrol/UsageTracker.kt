@@ -8,7 +8,7 @@ import java.util.*
 class UsageTracker(private val context: Context) {
 
     fun getUsageStats(): List<Map<String, Any>> {
-        val usageStatsManager = context.getSystemService(Context.USAGE_STATS_MANAGER_SERVICE) as UsageStatsManager
+        val usageStatsManager = context.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.HOUR_OF_DAY, 0)
         calendar.set(Calendar.MINUTE, 0)
