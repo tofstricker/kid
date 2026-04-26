@@ -1,0 +1,10 @@
+include: package:flutter_lints/analysis_options.yaml
+
+linter:
+  rules:
+    - prefer_const_constructors
+    - prefer_const_literals_to_create_immutables
+    - prefer_final_fields
+    - avoid_print
+    - prefer_is_empty
+    - prefer_is_not_empty
