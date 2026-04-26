@@ -55,9 +55,43 @@ jobs:
           path: |
             flutter_child_app/build/app/outputs/flutter-apk/app-release.apk
             flutter_parent_app/build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Firebase App Distribution (Child App)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: w9jds/firebase-action@master
+        with:
+          args: appdistribution:distribute flutter_child_app/build/app/outputs/flutter-apk/app-release.apk --app ${{ secrets.FIREBASE_APP_ID_CHILD }} --groups "testers"
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: Firebase App Distribution (Parent App)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: w9jds/firebase-action@master
+        with:
+          args: appdistribution:distribute flutter_parent_app/build/app/outputs/flutter-apk/app-release.apk --app ${{ secrets.FIREBASE_APP_ID_PARENT }} --groups "testers"
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 ```
 
 4.  **Get the file**: After you push the code, go to the "Actions" tab in GitHub. Once the build finishes, you can download the APK from the "Artifacts" section.
+
+## Option 2: Firebase App Distribution Setup
+
+To make the "Firebase App Distribution" step work, you need to set up **GitHub Secrets**:
+
+1.  **Firebase Token**:
+    -   Run `firebase login:ci` on your computer to get a token.
+    -   In GitHub: Settings > Secrets and variables > Actions > New repository secret.
+    -   Name: `FIREBASE_TOKEN`, Value: (Your token).
+2.  **App IDs**:
+    -   Go to [Firebase Console](https://console.firebase.google.com/).
+    -   Project Settings > Your apps > Android App.
+    -   Copy the "App ID" (starts with `1:XXX:android:YYY`).
+    -   In GitHub: New repository secret.
+    -   Name: `FIREBASE_APP_ID_CHILD` (for the child app) and `FIREBASE_APP_ID_PARENT` (for the parent app).
+3.  **Tester Group**:
+    -   In Firebase Console: App Distribution > Groups.
+    -   Create a group named `testers` and add your email.
 
 ## Option 2: Codemagic (Easiest for Flutter)
 Codemagic is a dedicated service for Flutter apps.

@@ -45,3 +45,19 @@ jobs:
           path: |
             flutter_child_app/build/app/outputs/flutter-apk/app-release.apk
             flutter_parent_app/build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Firebase App Distribution (Child App)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: w9jds/firebase-action@master
+        with:
+          args: appdistribution:distribute flutter_child_app/build/app/outputs/flutter-apk/app-release.apk --app ${{ secrets.FIREBASE_APP_ID_CHILD }} --groups "testers"
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: Firebase App Distribution (Parent App)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: w9jds/firebase-action@master
+        with:
+          args: appdistribution:distribute flutter_parent_app/build/app/outputs/flutter-apk/app-release.apk --app ${{ secrets.FIREBASE_APP_ID_PARENT }} --groups "testers"
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
