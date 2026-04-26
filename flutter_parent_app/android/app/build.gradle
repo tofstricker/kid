@@ -31,7 +31,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.kitecontrol_parent"
+        applicationId "com.kitecontrol.parent.app"
         minSdkVersion 21
         targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()

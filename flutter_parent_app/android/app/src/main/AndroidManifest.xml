@@ -5,8 +5,7 @@
 
     <application
         android:label="KiteControl Parent"
-        android:name="${applicationName}"
-        android:icon="@drawable/ic_launcher">
+        android:name="${applicationName}">
         
         <activity
             android:name=".MainActivity"
