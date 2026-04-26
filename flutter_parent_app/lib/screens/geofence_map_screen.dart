@@ -173,7 +173,7 @@ class _GeofenceMapScreenState extends State<GeofenceMapScreen> {
                       ],
                     ),
                     SizedBox(height: 20),
-                    Text("Radius: ${_radius.round()}m", style: TextStyle(color: Colors.zinc[500], fontSize: 12)),
+                    Text("Radius: ${_radius.round()}m", style: TextStyle(color: Colors.grey[500], fontSize: 12)),
                     Slider(
                       value: _radius,
                       min: 50,
@@ -181,7 +181,7 @@ class _GeofenceMapScreenState extends State<GeofenceMapScreen> {
                       divisions: 39,
                       label: "${_radius.round()}m",
                       activeColor: Colors.orange,
-                      inactiveColor: Colors.zinc[800],
+                      inactiveColor: Colors.grey[800],
                       onChanged: (v) => setState(() => _radius = v),
                     ),
                     SizedBox(height: 10),
@@ -190,7 +190,7 @@ class _GeofenceMapScreenState extends State<GeofenceMapScreen> {
                         Expanded(
                           child: TextButton(
                             style: TextButton.styleFrom(padding: EdgeInsets.symmetric(vertical: 12)),
-                            child: Text("CANCEL", style: TextStyle(color: Colors.zinc[500], fontSize: 12, fontWeight: FontWeight.bold)),
+                            child: Text("CANCEL", style: TextStyle(color: Colors.grey[500], fontSize: 12, fontWeight: FontWeight.bold)),
                             onPressed: () => setState(() => _selectedPoint = null),
                           ),
                         ),
@@ -232,7 +232,7 @@ class _GeofenceMapScreenState extends State<GeofenceMapScreen> {
         child: Text(
           type,
           style: TextStyle(
-            color: isSelected ? color : Colors.zinc[600],
+            color: isSelected ? color : Colors.grey[600],
             fontSize: 10,
             fontWeight: FontWeight.bold,
           ),

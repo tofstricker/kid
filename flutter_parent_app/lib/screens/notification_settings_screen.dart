@@ -82,7 +82,7 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
               SizedBox(height: 48),
               Text(
                 "Note: Restricted zone entry always triggers automatic device lockdown regardless of notification settings.",
-                style: TextStyle(color: Colors.zinc[600], fontSize: 11, fontStyle: FontStyle.italic),
+                style: TextStyle(color: Colors.grey[600], fontSize: 11, fontStyle: FontStyle.italic),
                 textAlign: TextAlign.center,
               ),
             ],
@@ -97,7 +97,7 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
       padding: EdgeInsets.only(bottom: 16, left: 4),
       child: Text(
         title,
-        style: TextStyle(color: Colors.zinc[500], fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1.2),
+        style: TextStyle(color: Colors.grey[500], fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1.2),
       ),
     );
   }
@@ -113,7 +113,7 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
       child: ListTile(
         contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         title: Text(title, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-        subtitle: Text(subtitle, style: TextStyle(color: Colors.zinc[500], fontSize: 12)),
+        subtitle: Text(subtitle, style: TextStyle(color: Colors.grey[500], fontSize: 12)),
         trailing: Switch(
           value: value,
           activeColor: isCritical ? Colors.red : Colors.orange,

@@ -50,9 +50,9 @@ class _SmartRulesScreenState extends State<SmartRulesScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.auto_awesome, size: 64, color: Colors.zinc[800]),
+                  Icon(Icons.auto_awesome, size: 64, color: Colors.grey[800]),
                   SizedBox(height: 16),
-                  Text("No Smart Rules defined", style: TextStyle(color: Colors.zinc[600])),
+                  Text("No Smart Rules defined", style: TextStyle(color: Colors.grey[600])),
                 ],
               ),
             );
@@ -136,12 +136,12 @@ class _SmartRulesScreenState extends State<SmartRulesScreen> {
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   labelText: "Rule Name (e.g. School Focus)",
-                  labelStyle: TextStyle(color: Colors.zinc[600]),
-                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.zinc[800])),
+                  labelStyle: TextStyle(color: Colors.grey[600]),
+                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey[800])),
                 ),
               ),
               SizedBox(height: 24),
-              Text("WHEN...", style: TextStyle(color: Colors.zinc[500], fontSize: 12, fontWeight: FontWeight.bold)),
+              Text("WHEN...", style: TextStyle(color: Colors.grey[500], fontSize: 12, fontWeight: FontWeight.bold)),
               DropdownButton<String>(
                 value: conditionType,
                 isExpanded: true,
@@ -155,12 +155,12 @@ class _SmartRulesScreenState extends State<SmartRulesScreen> {
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   labelText: "Condition Value (Fence ID, % or State)",
-                  labelStyle: TextStyle(color: Colors.zinc[600]),
-                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.zinc[800])),
+                  labelStyle: TextStyle(color: Colors.grey[600]),
+                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey[800])),
                 ),
               ),
               SizedBox(height: 24),
-              Text("THEN...", style: TextStyle(color: Colors.zinc[500], fontSize: 12, fontWeight: FontWeight.bold)),
+              Text("THEN...", style: TextStyle(color: Colors.grey[500], fontSize: 12, fontWeight: FontWeight.bold)),
               DropdownButton<String>(
                 value: actionType,
                 isExpanded: true,
@@ -174,8 +174,8 @@ class _SmartRulesScreenState extends State<SmartRulesScreen> {
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   labelText: "Action Value (App Package or *)",
-                  labelStyle: TextStyle(color: Colors.zinc[600]),
-                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.zinc[800])),
+                  labelStyle: TextStyle(color: Colors.grey[600]),
+                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey[800])),
                 ),
               ),
               SizedBox(height: 32),
