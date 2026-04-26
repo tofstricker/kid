@@ -468,19 +468,19 @@ async function startServer() {
       const prevLocation = prevLocationSnap.empty ? null : prevLocationSnap.docs[0].data();
       const prevGeofences = prevLocation?.currentGeofences || [];
 
-      const currentGeofences: string[] = [];
+      const currentFences: string[] = [];
 
       // 4. Calculate distance for each geofence
       for (const fence of geofences) {
         const distance = calculateDistance(latitude, longitude, fence.latitude, fence.longitude);
         if (distance <= fence.radius) {
-          currentGeofences.push(fence.id);
+          currentFences.push(fence.id);
         }
       }
 
       // 5. Detect transitions
-      const entered = currentGeofences.filter(id => !prevGeofences.includes(id));
-      const left = prevGeofences.filter(id => !currentGeofences.includes(id));
+      const entered = currentFences.filter(id => !prevGeofences.includes(id));
+      const left = prevGeofences.filter(id => !currentFences.includes(id));
 
       // 6. Evaluate Smart Rules based on NEW state
       await evaluateSmartRules(userId, familyId, {
@@ -549,7 +549,7 @@ async function startServer() {
         latitude,
         longitude,
         timestamp,
-        currentGeofences,
+        currentGeofences: currentFences,
         batteryLevel,
         isCharging,
         activity,

@@ -11,7 +11,7 @@ class GuardianStatusScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFF0F9FF), // Sky Light Blue
       appBar: AppBar(
-        title: Text("My Kite", style: TextStyle(color: Color(0xFF075985), fontWeight: FontWeight.black)),
+        title: Text("My Kite", style: TextStyle(color: Color(0xFF075985), fontWeight: FontWeight.w900)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
@@ -81,7 +81,7 @@ class GuardianStatusScreen extends StatelessWidget {
                     style: TextStyle(
                       color: Color(0xFF0C4A6E),
                       fontSize: 28,
-                      fontWeight: FontWeight.black,
+                      fontWeight: FontWeight.w900,
                       letterSpacing: -0.5,
                     ),
                   ),
@@ -158,7 +158,7 @@ class GuardianStatusScreen extends StatelessWidget {
             ),
             child: Text(
               status,
-              style: TextStyle(color: color, fontWeight: FontWeight.black, fontSize: 12),
+              style: TextStyle(color: color, fontWeight: FontWeight.w900, fontSize: 12),
             ),
           ),
         ],

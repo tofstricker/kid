@@ -41,7 +41,7 @@ class BlockedOverlayScreen extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 32,
-                      fontWeight: FontWeight.black,
+                      fontWeight: FontWeight.w900,
                       letterSpacing: -1,
                     ),
                   ),
@@ -99,8 +99,8 @@ class BlockedOverlayScreen extends StatelessWidget {
       children: [
         Icon(icon, color: color, size: 20),
         SizedBox(height: 8),
-        Text(value, style: TextStyle(color: Colors.white, fontWeight: FontWeight.black, fontSize: 18)),
-        Text(label, style: TextStyle(color: Colors.slate[500], fontSize: 11, fontWeight: FontWeight.bold, uppercase: true)),
+        Text(value, style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 18)),
+        Text(label.toUpperCase(), style: TextStyle(color: Colors.slate[500], fontSize: 11, fontWeight: FontWeight.bold)),
       ],
     );
   }
