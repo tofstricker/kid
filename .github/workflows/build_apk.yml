@@ -28,12 +28,14 @@ jobs:
         run: |
           # Build Child App
           cd flutter_child_app
+          flutter clean
           flutter pub get
           flutter build apk --release
           cd ..
           
           # Build Parent App
           cd flutter_parent_app
+          flutter clean
           flutter pub get
           flutter build apk --release
           cd ..

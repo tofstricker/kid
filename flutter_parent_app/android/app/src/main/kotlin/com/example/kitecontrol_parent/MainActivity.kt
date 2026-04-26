@@ -1,6 +1,6 @@
 package com.example.kitecontrol_parent
 
-import io.flutter.embedding.android.FlutterFragmentActivity
+import io.flutter.embedding.android.FlutterActivity
 
-class MainActivity: FlutterFragmentActivity() {
+class MainActivity: FlutterActivity() {
 }
