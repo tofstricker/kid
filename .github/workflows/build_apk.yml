@@ -1,48 +1,39 @@
-
 name: Build Android APK
+
 on:
   push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Code
+      - name: Checkout
         uses: actions/checkout@v4
-      
-      - name: Install Java
+
+      - name: Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
-          
-      - name: Install Flutter
+          distribution: temurin
+          java-version: 17
+
+      - name: Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0'
-          channel: 'stable'
-          
-      - name: Build Apps
+          flutter-version: 3.24.0
+
+      - name: Child App Build
         run: |
-          # Build Child App
           cd flutter_child_app
+          flutter clean
           flutter pub get
-          flutter build apk --release
-          cd ..
-          
-          # Build Parent App
+          flutter doctor -v
+          flutter build apk --release -v
+
+      - name: Parent App Build
+        run: |
           cd flutter_parent_app
+          flutter clean
           flutter pub get
-          flutter build apk --release
-          cd ..
-          
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: apks
-          path: |
-            flutter_child_app/build/app/outputs/flutter-apk/app-release.apk
-            flutter_parent_app/build/app/outputs/flutter-apk/app-release.apk
+          flutter build apk --release -v
