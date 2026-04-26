@@ -137,7 +137,7 @@ class _SmartRulesScreenState extends State<SmartRulesScreen> {
                 decoration: InputDecoration(
                   labelText: "Rule Name (e.g. School Focus)",
                   labelStyle: TextStyle(color: Colors.grey[600]),
-                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey[800])),
+                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey[800]!)),
                 ),
               ),
               SizedBox(height: 24),
@@ -156,7 +156,7 @@ class _SmartRulesScreenState extends State<SmartRulesScreen> {
                 decoration: InputDecoration(
                   labelText: "Condition Value (Fence ID, % or State)",
                   labelStyle: TextStyle(color: Colors.grey[600]),
-                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey[800])),
+                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey[800]!)),
                 ),
               ),
               SizedBox(height: 24),
@@ -175,7 +175,7 @@ class _SmartRulesScreenState extends State<SmartRulesScreen> {
                 decoration: InputDecoration(
                   labelText: "Action Value (App Package or *)",
                   labelStyle: TextStyle(color: Colors.grey[600]),
-                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey[800])),
+                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey[800]!)),
                 ),
               ),
               SizedBox(height: 32),
