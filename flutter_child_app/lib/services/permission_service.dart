@@ -1,5 +1,5 @@
 import 'package:permission_handler/permission_handler.dart';
-import 'package:android_intent_plus/android_intent_plus.dart';
+import 'package:android_intent_plus/android_intent.dart';
 import 'package:android_intent_plus/flag.dart';
 
 class PermissionService {
