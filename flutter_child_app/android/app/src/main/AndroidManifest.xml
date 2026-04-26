@@ -9,7 +9,7 @@
     <application
         android:label="KiteControl Child"
         android:name="${applicationName}"
-        android:icon="@drawable/launch_background">
+        android:icon="@drawable/ic_launcher">
         
         <activity
             android:name=".MainActivity"
