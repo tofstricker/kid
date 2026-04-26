@@ -15,7 +15,7 @@ dependencies:
   permission_handler: ^10.4.3
   android_intent_plus: ^6.0.0
   http: ^1.1.0
-  fl_chart: ^0.63.0
+  fl_chart: ">=0.63.0 <2.0.0"
   image_picker: ^1.0.4
   google_maps_flutter: ^2.5.0
 
