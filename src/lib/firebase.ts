@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { 
-  getFirestore, 
+  initializeFirestore,
   doc, 
   getDocFromServer 
 } from 'firebase/firestore';
@@ -10,7 +10,11 @@ import firebaseConfig from '../../firebase-applet-config.json';
 const app = initializeApp(firebaseConfig);
 
 // CRITICAL: Must use the firestoreDatabaseId from the config
-export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
+// Use long polling to avoid WebSocket issues in some proxy environments
+export const db = initializeFirestore(app, {
+  experimentalForceLongPolling: true,
+}, firebaseConfig.firestoreDatabaseId);
+
 export const auth = getAuth(app);
 
 export interface FirestoreErrorInfo {
@@ -45,9 +49,16 @@ export function handleFirestoreError(error: any, operation: string, path: string
 }
 
 export async function testFirebaseConnection() {
+  const timeout = new Promise((_, reject) => 
+    setTimeout(() => reject(new Error('Firebase connection timed out')), 15000)
+  );
+
   try {
     // Phase 0: Test connection with a server-side fetch
-    await getDocFromServer(doc(db, '_internal_', 'probe'));
+    await Promise.race([
+      getDocFromServer(doc(db, '_internal_', 'probe')),
+      timeout
+    ]);
     return true;
   } catch (error: any) {
     if (error.code === 'permission-denied') {

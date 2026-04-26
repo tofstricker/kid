@@ -2,14 +2,15 @@ import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import admin from "firebase-admin";
+import { getFirestore } from "firebase-admin/firestore";
 import firebaseConfig from "./firebase-applet-config.json" assert { type: "json" };
 
 // Initialize Firebase Admin
-admin.initializeApp({
+const appAdmin = admin.initializeApp({
   projectId: firebaseConfig.projectId,
 });
 
-const db = admin.firestore();
+const db = getFirestore(appAdmin, firebaseConfig.firestoreDatabaseId);
 const fcm = admin.messaging();
 
 async function startServer() {
