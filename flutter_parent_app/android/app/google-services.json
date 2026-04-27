@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "433665143268",
+    "project_id": "gen-lang-client-0236511878",
+    "storage_bucket": "gen-lang-client-0236511878.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433665143268:android:bd15c79e98a6cfaab497f1",
+        "android_client_info": {
+          "package_name": "com.kitecontrol.parent.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433665143268-na9e37epskmm0mnhg4bg1vtvmku1rvr6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDp9Z-mxgyJB-A6CBAnkRHB3MVlwRrt7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "433665143268-na9e37epskmm0mnhg4bg1vtvmku1rvr6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
