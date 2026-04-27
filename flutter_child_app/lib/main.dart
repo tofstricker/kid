@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'services/blocking_service.dart';
 import 'services/usage_sync_service.dart';
 import 'services/camera_service.dart';
 import 'screens/permission_screen.dart';
+import 'screens/login_screen.dart';
 import 'dart:async';
 
 bool isFirebaseInitialized = false;
@@ -47,7 +49,26 @@ class KiteChildGuardianApp extends StatelessWidget {
     return MaterialApp(
       title: 'KiteControl Guardian',
       theme: ThemeData.dark(),
-      home: isFirebaseInitialized ? PermissionScreen() : FirebaseSetupErrorScreen(error: firebaseError),
+      home: isFirebaseInitialized ? AuthWrapper() : FirebaseSetupErrorScreen(error: firebaseError),
+    );
+  }
+}
+
+class AuthWrapper extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          User? user = snapshot.data;
+          if (user == null) {
+            return LoginScreen();
+          }
+          return PermissionScreen();
+        }
+        return Scaffold(body: Center(child: CircularProgressIndicator()));
+      },
     );
   }
 }
