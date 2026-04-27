@@ -33,8 +33,9 @@ service cloud.firestore {
     function isValidPairingCode(data) {
       return data.keys().hasAll(['code', 'familyId', 'createdBy', 'expiresAt', 'isUsed'])
         && data.keys().size() == 5
-        && data.code.size() == 6
+        && data.code is string && data.code.size() == 6
         && data.familyId is string
+        && data.createdBy is string
         && data.expiresAt is timestamp
         && data.isUsed is bool;
     }

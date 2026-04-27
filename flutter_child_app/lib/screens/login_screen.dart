@@ -16,33 +16,29 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isLoading = false;
   String? errorMessage;
 
-  void _loginAnonymously() async {
+  void _setupDevice() async {
     setState(() {
       isLoading = true;
       errorMessage = null;
     });
 
     try {
-      UserCredential cred = await _auth.signInAnonymously();
+      final childId = DateTime.now().millisecondsSinceEpoch.toString();
+      final childEmail = 'child_$childId@kitecontrol.local';
+      final childPassword = childId + "secure";
+      UserCredential cred = await _auth.createUserWithEmailAndPassword(email: childEmail, password: childPassword);
       
-      // Check if user document already exists (if reuninstalled/cleared app data it creates new anon, but just to be safe)
       final doc = await _db.collection('users').doc(cred.user!.uid).get();
       if (!doc.exists) {
         await _db.collection('users').doc(cred.user!.uid).set({
-          'email': '',
+          'email': childEmail,
           'displayName': 'My Child Device',
           'role': 'CHILD',
           'familyId': '',
           'createdAt': FieldValue.serverTimestamp(),
         });
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (c) => ChildLinkScreen()));
-      } else {
-        if (doc.data()?['familyId'] == '') {
-           Navigator.pushReplacement(context, MaterialPageRoute(builder: (c) => ChildLinkScreen()));
-        } else {
-           Navigator.pushReplacement(context, MaterialPageRoute(builder: (c) => PermissionScreen()));
-        }
-      }
+      } 
     } catch (e) {
       setState(() {
         errorMessage = "An unexpected error occurred: $e";
@@ -90,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                       ),
                       child: Text("Setup Device", style: TextStyle(fontSize: 16, color: Colors.white)),
-                      onPressed: _loginAnonymously,
+                      onPressed: _setupDevice,
                     ),
             ],
           ),

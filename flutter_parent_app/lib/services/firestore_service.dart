@@ -19,6 +19,7 @@ class FirestoreService {
       return code;
     } catch (e) {
       print("Firestore Service Error (Generate Code): $e");
+      throw e;
     }
     return null;
   }

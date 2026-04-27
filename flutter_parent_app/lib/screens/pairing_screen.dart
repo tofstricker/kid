@@ -79,11 +79,15 @@ class _PairingScreenState extends State<PairingScreen> {
         setState(() => isLoading = true);
         final user = _auth.currentUser;
         if (user != null) {
-          // In this architecture, familyId defaults to the Parent's UID
-          String? code = await _db.generatePairingCode(user.uid, user.uid);
-          setState(() {
-            generatedCode = code;
-          });
+          try {
+            // In this architecture, familyId defaults to the Parent's UID
+            String? code = await _db.generatePairingCode(user.uid, user.uid);
+            setState(() {
+              generatedCode = code;
+            });
+          } catch (e) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+          }
         }
         setState(() => isLoading = false);
       },
