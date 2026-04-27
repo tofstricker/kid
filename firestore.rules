@@ -23,7 +23,7 @@ service cloud.firestore {
     function isValidUser(data) {
       return data.keys().hasAll(['email', 'displayName', 'role', 'familyId', 'createdAt'])
         && data.keys().size() == 5
-        && data.email is string && data.email.size() <= 256
+        && data.email is string
         && data.displayName is string && data.displayName.size() <= 100
         && data.role in ['PARENT', 'CHILD']
         && data.familyId is string && data.familyId.size() <= 128
@@ -67,14 +67,16 @@ service cloud.firestore {
       allow update: if isOwner(userId)
         && incoming().role == existing().role
         && incoming().createdAt == existing().createdAt
-        && incoming().familyId == existing().familyId
         && (
-          incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'fcmTokens'])
+          (incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'fcmTokens']) && incoming().familyId == existing().familyId)
+          ||
+          (incoming().diff(existing()).affectedKeys().hasOnly(['familyId']) && existing().familyId == '')
         );
     }
 
     match /pairing_codes/{codeId} {
       allow get: if isSignedIn(); // Restricted to active lookup by client
+      allow list: if isSignedIn(); // Need list for linking
       allow create: if isParent() && isValidPairingCode(incoming()) && incoming().createdBy == request.auth.uid;
       allow update: if isSignedIn() 
         && incoming().diff(existing()).affectedKeys().hasOnly(['isUsed'])
